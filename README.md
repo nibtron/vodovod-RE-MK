@@ -6,6 +6,8 @@ Vodovod app
 The reports editor is available at `https://vodovod-restanj-mali-kamen.eu/admin/`.
 Reports are grouped by year. Open a year to add or edit its report titles and PDF
 uploads, or create a new year to add another group. Uploads are limited to 20 MiB.
+The editor shows only the entry form, with the generic preview pane disabled.
+New years start with an empty report list; add a report to enter its title and PDF.
 Saving publishes directly to `main` without a review step; the GitHub Actions workflow
 then builds the site and publishes it to GitHub Pages.
 
