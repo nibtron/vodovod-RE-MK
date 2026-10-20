@@ -56,7 +56,7 @@ const yearEntries = Object.values(
 )
 
 const reports = computed(() =>
-  Object.fromEntries(yearEntries.map(({ year, reports }) => [year, reports]))
+  Object.fromEntries(yearEntries.map(({ title, reports }) => [Number(title), reports]))
 )
 const years = computed(() => Object.keys(reports.value).sort((a, b) => b - a))
 const selectedYear = ref(Math.max(...years.value.map(Number)))
