@@ -59,3 +59,38 @@ collections:
             media_library:
               config:
                 max_file_size: 20971520
+
+  - name: announcements
+    label: Obvestila
+    label_singular: Obvestilo
+    editor:
+      preview: false
+    folder: src/data/announcements
+    create: true
+    delete: true
+    extension: json
+    format: json
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} — {{date}}"
+    sortable_fields:
+      - date
+      - title
+    fields:
+      - name: title
+        label: Naslov
+        widget: string
+        required: true
+        hint: "Kratek in jasen naslov obvestila."
+      - name: date
+        label: Datum
+        widget: datetime
+        required: true
+        date_format: "YYYY-MM-DD"
+        time_format: false
+        picker_utc: true
+        hint: "Datum obvestila. Obvestila so na spletni strani razvrščena od najnovejšega do najstarejšega."
+      - name: content
+        label: Vsebina
+        widget: text
+        required: true
+        hint: "Vnesite besedilo obvestila. Prelomi vrstic in odstavki bodo ohranjeni."

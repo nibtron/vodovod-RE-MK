@@ -31,3 +31,16 @@ then builds the site and publishes it to GitHub Pages.
 Year groups and their reports are stored in `src/data/report-years/`. After setup,
 editors sign in at the admin URL with their GitHub account. CMS changes are committed
 directly to `main`, and the workflow publishes them automatically.
+
+## Managing announcements
+
+The **Obvestila** page is available at `https://vodovod-restanj-mali-kamen.eu/#/obvestila`,
+next to **Poročila** in the navigation. In `/admin/`, select **Obvestila** and create
+an **Obvestilo** with a **Naslov** (title), **Datum** (date), and **Vsebina** (content).
+Content is plain text; line breaks and paragraphs are preserved. Saving publishes
+through the same GitHub Actions workflow as reports. Dates order announcements
+newest first; they do not schedule publication.
+
+Entries are individual JSON files in `src/data/announcements/`, with `title`, `date`
+(`YYYY-MM-DD`), and `content` fields. Until the first entry is published, the page
+shows an empty state.
