@@ -16,22 +16,20 @@ collections:
     folder: src/data/report-years
     create: true
     delete: true
-    identifier_field: year
     extension: json
     format: json
-    slug: "{{fields.year}}"
-    summary: "Leto {{year}}"
+    slug: "{{slug}}"
     sortable_fields:
-      - year
+      - title
     fields:
-      - name: year
+      - name: title
         label: Leto
         widget: string
         required: true
         pattern:
           - "^(20[0-9]{2}|2100)$"
           - Vnesite leto med 2000 in 2100.
-        hint: "Ustvarite skupino za novo leto, na primer 2027."
+        hint: "Ustvarite skupino za novo leto, na primer 2027. To leto bo naslov skupine."
       - name: reports
         label: Poročila v tem letu
         label_singular: Poročilo
