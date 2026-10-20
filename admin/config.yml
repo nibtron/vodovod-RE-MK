@@ -1,0 +1,45 @@
+backend:
+  name: github
+  repo: nibtron/vodovod-RE-MK
+  branch: main
+  base_url: https://vodovod-reports-auth.vodovod-reports-auth.workers.dev
+  auth_endpoint: /auth
+
+publish_mode: simple
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+  - name: reports
+    label: Poročila
+    files:
+      - name: reports
+        label: Seznam poročil
+        file: src/data/reports.json
+        fields:
+          - name: reports
+            label: Poročila
+            label_singular: Poročilo
+            widget: list
+            summary: "{{fields.year}} — {{fields.title}}"
+            add_to_top: true
+            fields:
+              - name: year
+                label: Leto
+                widget: number
+                value_type: int
+                min: 2000
+                max: 2100
+              - name: title
+                label: Naslov
+                widget: string
+              - name: pdf
+                label: PDF datoteka
+                widget: file
+                choose_url: false
+                pattern:
+                  - ".*\\.pdf$"
+                  - Izberite datoteko PDF.
+                media_library:
+                  config:
+                    max_file_size: 20971520
