@@ -4,9 +4,10 @@ Vodovod app
 ## Managing reports
 
 The reports editor is available at `https://vodovod-restanj-mali-kamen.eu/admin/`.
-Each report has its own entry with a title, year, and PDF upload. Uploads are limited to
-20 MiB. Saving publishes directly to `main` without a review step; the GitHub Actions
-workflow then builds the site and publishes it to GitHub Pages.
+Reports are grouped by year. Open a year to add or edit its report titles and PDF
+uploads, or create a new year to add another group. Uploads are limited to 20 MiB.
+Saving publishes directly to `main` without a review step; the GitHub Actions workflow
+then builds the site and publishes it to GitHub Pages.
 
 ### One-time setup
 
@@ -25,6 +26,6 @@ workflow then builds the site and publishes it to GitHub Pages.
 6. In GitHub repository settings, ensure Actions are enabled and Pages continues to
    publish from the `gh-pages` branch.
 
-Reports are stored separately in `src/data/reports/`. After setup, editors sign in at
-the admin URL with their GitHub account. CMS changes are committed directly to `main`,
-and the workflow publishes them automatically.
+Year groups and their reports are stored in `src/data/report-years/`. After setup,
+editors sign in at the admin URL with their GitHub account. CMS changes are committed
+directly to `main`, and the workflow publishes them automatically.
