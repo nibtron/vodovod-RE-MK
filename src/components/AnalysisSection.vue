@@ -12,7 +12,7 @@
         <div class="mt-8">
           <p class="font-semibold text-lg text-gray-700 mb-2">Izberite leto:</p>
           <ul class="flex flex-wrap gap-2">
-            <li v-for="year in Object.keys(reports).sort((a,b)=>b-a)" :key="year">
+            <li v-for="year in years" :key="year">
               <button
                 class="px-4 py-1 rounded-full text-sm border"
                 :class="{
@@ -30,11 +30,12 @@
 
       <!-- Right column (Reports) -->
       <div class="grid grid-cols-1 gap-6 mt-10 md:mt-0 flex-1">
-        <div v-for="(pdf, name) in reports[selectedYear]" :key="name">
-          <h3 class="font-semibold text-lg text-gray-800 mb-2">{{ name }}</h3>
+        <div v-for="report in reports[selectedYear]" :key="report.pdf">
+          <h3 class="font-semibold text-lg text-gray-800 mb-2">{{ report.title }}</h3>
           <a
-            :href="`${baseURL}${pdf}`"
+            :href="reportUrl(report.pdf)"
             target="_blank"
+            rel="noopener noreferrer"
             class="inline-block border px-4 py-2 rounded-md hover:bg-gray-100 transition"
           >
             Odpri poročilo (PDF) →
@@ -46,23 +47,19 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const baseURL = import.meta.env.BASE_URL
+import { computed, ref } from 'vue'
+import reportData from '../data/reports.json'
 
-const reports = {
-  2024: { "Letno poročilo 2024": 'letno_porocilo_2024.pdf' },
-  2025: {
-    "Analiza februar": 'Analiza februar 2025.pdf',
-    "Analiza junij": 'Analiza junij_2025.pdf',
-    "Analiza julij": 'Analiza julij _2025.pdf',
-    "Analiza oktober": 'Analiza_oktober_2025.pdf',
-    "Analiza oktober - Mestna občina Krško": '25-110220_Pitna-voda---Mali-Kamen-21.pdf',
-    "Letno poročilo 2025": 'letno_porocilo_2025.pdf',
-    "Poročilo o kakovosti pitne vode za leto 2025": 'porocilo_o_kakovosti_2025.pdf'
-  },
-  2026: {
-    "Analiza februar": 'Analiza februar 2026.pdf'
-  },
-}
-const selectedYear = ref(2026)
+const baseURL = import.meta.env.BASE_URL
+const reportUrl = (path) => `${baseURL}${path.replace(/^\/+/, '')}`
+
+const reports = computed(() =>
+  reportData.reports.reduce((grouped, report) => {
+    const yearReports = grouped[report.year] || (grouped[report.year] = [])
+    yearReports.push(report)
+    return grouped
+  }, {})
+)
+const years = computed(() => Object.keys(reports.value).sort((a, b) => b - a))
+const selectedYear = ref(Math.max(...years.value.map(Number)))
 </script>
