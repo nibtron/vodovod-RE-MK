@@ -12,34 +12,40 @@ public_folder: /uploads
 collections:
   - name: reports
     label: Poročila
-    files:
-      - name: reports
-        label: Seznam poročil
-        file: src/data/reports.json
-        fields:
-          - name: reports
-            label: Poročila
-            label_singular: Poročilo
-            widget: list
-            summary: "{{fields.year}} — {{fields.title}}"
-            add_to_top: true
-            fields:
-              - name: year
-                label: Leto
-                widget: number
-                value_type: int
-                min: 2000
-                max: 2100
-              - name: title
-                label: Naslov
-                widget: string
-              - name: pdf
-                label: PDF datoteka
-                widget: file
-                choose_url: false
-                pattern:
-                  - ".*\\.pdf$"
-                  - Izberite datoteko PDF.
-                media_library:
-                  config:
-                    max_file_size: 20971520
+    label_singular: Poročilo
+    folder: src/data/reports
+    create: true
+    delete: true
+    extension: json
+    format: json
+    slug: "{{fields.year}}-{{slug}}"
+    summary: "{{year}} — {{title}}"
+    sortable_fields:
+      - year
+      - title
+    fields:
+      - name: title
+        label: Naslov poročila
+        widget: string
+        required: true
+        hint: "Na primer: Analiza oktober ali Letno poročilo."
+      - name: year
+        label: Leto
+        widget: number
+        value_type: int
+        min: 2000
+        max: 2100
+        required: true
+        hint: "Izberite leto, ki bo prikazano pri poročilu na spletni strani."
+      - name: pdf
+        label: Datoteka PDF
+        widget: file
+        required: true
+        choose_url: false
+        hint: "Naložite PDF datoteko, veliko največ 20 MB."
+        pattern:
+          - ".*\\.pdf$"
+          - Izberite datoteko PDF.
+        media_library:
+          config:
+            max_file_size: 20971520

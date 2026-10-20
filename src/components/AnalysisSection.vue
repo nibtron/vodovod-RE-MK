@@ -48,17 +48,19 @@
 
 <script setup>
 import { computed, ref } from 'vue'
-import reportData from '../data/reports.json'
 
 const baseURL = import.meta.env.BASE_URL
 const reportUrl = (path) => `${baseURL}${path.replace(/^\/+/, '')}`
+const reportEntries = Object.values(
+  import.meta.glob('../data/reports/*.json', { eager: true, import: 'default' })
+)
 
 const reports = computed(() =>
-  reportData.reports.reduce((grouped, report) => {
+  reportEntries.reduce((grouped, report) => {
     const yearReports = grouped[report.year] || (grouped[report.year] = [])
     yearReports.push(report)
     return grouped
-  }, {})
+  }, Object.create(null))
 )
 const years = computed(() => Object.keys(reports.value).sort((a, b) => b - a))
 const selectedYear = ref(Math.max(...years.value.map(Number)))
