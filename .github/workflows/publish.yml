@@ -32,8 +32,8 @@ jobs:
       - name: Build website
         run: npm run build
 
-      - name: Include custom domain
-        run: cp CNAME dist/
+      - name: Verify generated pages and search metadata
+        run: npm run check:build
 
       - name: Publish to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4

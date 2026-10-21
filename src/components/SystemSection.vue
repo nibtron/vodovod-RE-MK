@@ -60,19 +60,23 @@
 <script setup>
 // 👇 Replace with your actual asset path
 import bgUrl from '@/assets/images/img-sistem-background.jpg'
+import system3 from '@/assets/images/img-sistem3.jpeg'
+import system3Hover from '@/assets/images/img-sistem3.1.jpeg'
+import system2 from '@/assets/images/img-sistem2.jpeg'
+import system2Hover from '@/assets/images/img-sistem2.1.jpeg'
 
 const cards = [
   {
     title: "Varnost v vsaki kapljici",
     text: "Na terenu zagotavljamo, da je voda za vaše vsakdanje potrebe čista in varna.",
-    img: new URL('@/assets/images/img-sistem3.jpeg', import.meta.url).href,
-    hoverImg: new URL('@/assets/images/img-sistem3.1.jpeg', import.meta.url).href,
+    img: system3,
+    hoverImg: system3Hover,
   },
   {
     title: "Temelj varnosti",
     text: "Naša robustna infrastruktura zagotavlja zanesljivo oskrbo z vodo tudi v nujnih primerih.",
-    img: new URL('@/assets/images/img-sistem2.jpeg', import.meta.url).href,
-    hoverImg: new URL('@/assets/images/img-sistem2.1.jpeg', import.meta.url).href,
+    img: system2,
+    hoverImg: system2Hover,
   }
 ]
 </script>

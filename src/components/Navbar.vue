@@ -16,7 +16,7 @@
         </li>
         <li>
           <RouterLink
-            to="/analiza"
+            to="/analiza/"
             class="hover:text-blue-300 transition-colors duration-200"
           >
             Poročila
@@ -24,7 +24,7 @@
         </li>
         <li>
           <RouterLink
-            to="/obvestila"
+            to="/obvestila/"
             class="hover:text-blue-300 transition-colors duration-200"
           >
             Obvestila
